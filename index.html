@@ -1,0 +1,1861 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ABGKS - Головна</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:wght@400;700&display=swap');
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(120deg, #18122b 0%, #251a3a 100%);
+            color: #e0e0ff;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        .bg-blobs {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        .bg-blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.25;
+            animation: blobMove 18s infinite alternate;
+            mix-blend-mode: lighten;
+        }
+        .bg-blob1 {
+            width: 420px; height: 420px;
+            background: #a366ff;
+            top: -120px; left: -120px;
+            animation-delay: 0s;
+        }
+        .bg-blob2 {
+            width: 340px; height: 340px;
+            background: #6a00ff;
+            top: 60vh; left: 60vw;
+            animation-delay: 3s;
+        }
+        .bg-blob3 {
+            width: 300px; height: 300px;
+            background: #00cfff;
+            top: 40vh; left: 10vw;
+            animation-delay: 7s;
+        }
+        @keyframes blobMove {
+            0% { transform: scale(1) translate(0,0);}
+            100% { transform: scale(1.2) translate(60px, 40px);}
+        }
+
+        header {
+            background: linear-gradient(90deg, #251a3a 0%, #3a2d5c 100%);
+            color: #fff;
+            letter-spacing: 2px;
+            text-shadow: 0 2px 12px #a366ff, 0 0 2px #fff;
+            border-bottom: 2px solid #3a2d5c;
+            text-align: center;
+            padding: 30px;
+            font-size: 32px;
+            font-weight: 700;
+            font-family: 'Playfair Display', serif;
+            position: relative;
+            z-index: 1;
+        }
+
+        nav {
+            background: rgba(34, 0, 51, 0.85);
+            padding: 15px;
+            text-align: center;
+            position: relative;
+            border-bottom: 2px solid #3a2d5c;
+            box-shadow: 0 2px 12px #2d1a3a;
+            z-index: 1;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 18px;
+            padding: 12px 25px;
+            background: #251a3a;
+            border-radius: 8px;
+            border: 1.5px solid #3a2d5c;
+            box-shadow: 0 0 6px #3a2d5c;
+            text-shadow: 0 1px 6px #3a2d5c;
+            transition: 0.3s;
+            font-weight: 600;
+        }
+
+        nav a:hover {
+            background: #3a2d5c;
+            color: #fff;
+            box-shadow: 0 0 12px #a366ff, 0 0 2px #fff;
+        }
+
+        .cart-icon {
+            position: absolute;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+            cursor: pointer;
+            width: 24px;
+            height: 24px;
+            transition: transform 0.3s ease;
+        }
+
+        .cart-icon:hover {
+            transform: translateY(-50%) scale(1.2);
+        }
+
+        .products-icon {
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+            margin: 0 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .products-icon:hover {
+            transform: scale(1.2);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 40px;
+            text-align: center;
+            background: rgba(34, 0, 51, 0.85);
+            border-radius: 12px;
+            box-shadow: 0 0 24px 0 #3a2d5c, 0 0 2px #fff;
+            border: 1.5px solid #3a2d5c;
+            margin-top: 30px;
+            z-index: 1;
+        }
+
+        h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 700;
+        }
+
+        p {
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        .product {
+            background: rgba(34, 0, 51, 0.92);
+            padding: 20px;
+            margin: 20px;
+            display: inline-block;
+            width: 280px;
+            border-radius: 10px;
+            border: 1.5px solid #3a2d5c;
+            box-shadow: 0 0 16px #3a2d5c, 0 0 2px #fff;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .product:hover {
+            transform: scale(1.04);
+            box-shadow: 0 0 32px #a366ff, 0 0 6px #fff;
+            border-color: #a366ff;
+        }
+
+        .product img {
+            width: 100%;
+            border-radius: 10px;
+            border: 2px solid #3a2d5c;
+            box-shadow: 0 0 8px #3a2d5c;
+            background: #fff;
+        }
+
+        .product button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+            background: #3a2d5c !important;
+            color: #fff !important;
+            border: 1.5px solid #a366ff !important;
+            box-shadow: 0 0 8px #a366ff, 0 0 2px #fff;
+            text-shadow: 0 1px 6px #a366ff;
+            font-weight: bold;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+        }
+
+        .product button:hover {
+            background: #a366ff !important;
+            color: #fff !important;
+            box-shadow: 0 0 16px #a366ff, 0 0 4px #fff;
+            border-color: #fff !important;
+            transform: scale(1.05);
+        }
+
+        .buy-btn, .order-btn, .cart-btn, .cart-clear-btn, .pay-btn {
+            background: #3a2d5c !important;
+            color: #fff !important;
+            border: 1.5px solid #a366ff !important;
+            box-shadow: 0 0 8px #a366ff, 0 0 2px #fff;
+            text-shadow: 0 1px 6px #a366ff;
+            font-weight: bold;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+        }
+
+        .buy-btn:hover, .order-btn:hover, .cart-btn:hover, .cart-clear-btn:hover, .pay-btn:hover {
+            background: #a366ff !important;
+            color: #fff !important;
+            box-shadow: 0 0 16px #a366ff, 0 0 4px #fff;
+            border-color: #fff !important;
+            transform: scale(1.05);
+        }
+
+        footer {
+            background: #251a3a;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+            font-size: 16px;
+            border-top: 2px solid #3a2d5c;
+            box-shadow: 0 -2px 12px #3a2d5c;
+            text-shadow: 0 1px 6px #3a2d5c;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .popup {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #251a3a;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 8px;
+            border: 1.5px solid #3a2d5c;
+            box-shadow: 0 0 8px #3a2d5c;
+            display: none;
+            z-index: 1000;
+        }
+
+        .popup.show {
+            display: block;
+        }
+
+        .price-range-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .price-range-container input[type="range"] {
+            width: 150px;
+            background: #222;
+            border-radius: 5px;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+
+        .price-range-container input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 15px;
+            height: 15px;
+            background: #ddd;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .price-range-container span {
+            font-size: 14px;
+            color: #ddd;
+        }
+
+        .popup h3 {
+            font-family: 'Playfair Display', serif;
+            color: white;
+        }
+
+        .popup input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background: #333;
+            color: white;
+        }
+
+        .popup button {
+            padding: 12px;
+            width: 100%;
+            background: white !important;
+            color: black !important;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .popup button:hover {
+            background: #ddd !important;
+        }
+
+        .blink {
+            animation: blink 0.5s steps(1) 3;
+        }
+
+        #cart-alert {
+            color: red;
+            font-weight: bold;
+            margin-left: 5px;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content {
+            background: #251a3a;
+            padding: 30px;
+            margin: 10% auto;
+            width: 40%;
+            text-align: center;
+            border-radius: 12px;
+            box-shadow: 0 0 16px #3a2d5c;
+            color: #fff;
+            border: 1.5px solid #3a2d5c;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .modal-content h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        .modal-content input {
+            width: 90%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #444;
+            border-radius: 8px;
+            background: #333;
+            color: #ddd;
+            font-size: 16px;
+        }
+
+        .modal-content button {
+            padding: 12px 20px;
+            margin-top: 15px;
+            background: #3a2d5c;
+            color: #fff;
+            border: 1.5px solid #a366ff;
+            box-shadow: 0 0 8px #a366ff;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background 0.3s ease;
+        }
+
+        .modal-content button:hover {
+            background: #a366ff;
+            color: #fff;
+            border-color: #fff;
+            box-shadow: 0 0 16px #a366ff;
+        }
+
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 24px;
+            color: #fff;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .close:hover {
+            color: #ddd;
+        }
+
+        .home-link {
+            position: absolute;
+            top: 50%;
+            left: 20px;
+            transform: translateY(-50%);
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            padding: 12px 25px;
+            background: #251a3a;
+            border-radius: 8px;
+            font-weight: 600;
+            border: 1.5px solid #3a2d5c;
+            box-shadow: 0 0 6px #3a2d5c;
+            text-shadow: 0 1px 6px #3a2d5c;
+            transition: background 0.3s ease;
+        }
+
+        .home-link:hover {
+            background: #3a2d5c;
+            color: #fff;
+            box-shadow: 0 0 12px #a366ff, 0 0 2px #fff;
+        }
+
+        .category-link {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 16px;
+            padding: 8px 15px;
+            background: #251a3a;
+            border-radius: 8px;
+            font-weight: 500;
+            border: 1.5px solid #3a2d5c;
+            box-shadow: 0 0 6px #3a2d5c;
+            text-shadow: 0 1px 6px #3a2d5c;
+            transition: background 0.3s ease;
+        }
+
+        .category-link:hover {
+            background: #3a2d5c;
+            color: #fff;
+            box-shadow: 0 0 12px #a366ff, 0 0 2px #fff;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background: #251a3a;
+            color: white;
+            min-width: 200px;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+            padding: 10px;
+            z-index: 1;
+            border-radius: 8px;
+            border: 1.5px solid #3a2d5c;
+            box-shadow: 0 0 8px #3a2d5c;
+        }
+
+        .dropdown-content p {
+            margin: 5px 0;
+            padding: 5px;
+            cursor: pointer;
+            color: #fff;
+            text-shadow: 0 1px 6px #3a2d5c;
+            transition: background 0.3s ease;
+        }
+
+        .dropdown-content p:hover {
+            background: #3a2d5c;
+            color: #fff;
+            box-shadow: 0 0 8px #a366ff;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .brand-slider {
+            display: flex;
+            overflow: hidden;
+            position: relative;
+            background: #000;
+            padding: 10px 0;
+            margin-top: 20px;
+        }
+
+        .brand-slider-track {
+            display: flex;
+            animation: scroll 20s linear infinite;
+        }
+
+        .brand-slider img {
+            width: 100px;
+            height: auto;
+            margin: 0 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .brand-slider img:hover {
+            transform: scale(1.2);
+        }
+
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        .slideshow-container {
+            position: relative;
+            max-width: 100%;
+        }
+
+        .mySlides {
+            display: none;
+        }
+
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            margin-top: -22px;
+            padding: 16px;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            transition: 0.6s ease;
+            user-select: none;
+            border-radius: 0 3px 3px 0;
+        }
+
+        .prev {
+            left: 0;
+            border-radius: 3px 0 0 3px;
+        }
+
+        .next {
+            right: 0;
+            border-radius: 0 3px 3px 0;
+        }
+
+        .prev:hover, .next:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .product-slideshow {
+            position: relative;
+            width: 100%;
+            height: 320px;
+            overflow: hidden;
+            border-radius: 10px;
+            background-color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .product-slideshow img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            object-position: center center;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .product-slideshow img.active {
+            opacity: 1;
+        }
+
+        .zara-animate {
+            background: linear-gradient(120deg, #fff 60%, #e0e0ff 100%);
+            box-shadow: 0 0 32px #a366ff44;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 320px;
+            min-width: 220px;
+        }
+
+        .zara-animate img {
+            max-width: 220px;
+            max-height: 320px;
+            object-fit: cover;
+            object-position: center center;
+            border-radius: 12px;
+            box-shadow: 0 0 24px #a366ff55;
+            opacity: 0;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%) scale(1);
+            transition: opacity 1s cubic-bezier(.4,0,.2,1), transform 1.2s cubic-bezier(.4,0,.2,1);
+            z-index: 1;
+            background: #fff;
+        }
+
+        .zara-animate img.active {
+            opacity: 1;
+            z-index: 2;
+            transform: translate(-50%, -50%) scale(1.04);
+            box-shadow: 0 0 48px #a366ff99;
+        }
+
+        .hidden-link {
+            display: none;
+        }
+
+        .filter-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin: 20px 0;
+            padding: 15px;
+            background: #333;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .filter-container label {
+            font-size: 16px;
+            font-weight: bold;
+            color: #ddd;
+        }
+
+        .filter-container select {
+            padding: 8px 12px;
+            border-radius: 5px;
+            border: 1px solid #555;
+            background: #222;
+            color: #ddd;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .filter-container select:hover {
+            background: #444;
+            border-color: #777;
+        }
+
+        .filter-container input[type="text"] {
+            padding: 8px 12px;
+            border-radius: 5px;
+            border: 1px solid #555;
+            background: #222;
+            color: #ddd;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .filter-container input[type="text"]:hover {
+            background: #444;
+            border-color: #777;
+        }
+
+        #helpWidget {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 300px;
+            background: rgba(34, 0, 51, 0.95);
+            border: 1.5px solid #3a2d5c;
+            border-radius: 12px;
+            box-shadow: 0 0 16px #a366ff, 0 0 4px #fff;
+            font-family: 'Montserrat', sans-serif;
+            display: none;
+            z-index: 9999;
+            padding: 20px;
+            color: #fff;
+        }
+        #helpButton {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #3a2d5c;
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            font-size: 28px;
+            cursor: pointer;
+            box-shadow: 0 0 12px #a366ff, 0 0 2px #fff;
+            transition: transform 0.3s ease;
+            z-index: 10000;
+        }
+        #helpButton:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 16px #a366ff, 0 0 4px #fff;
+        }
+        #helpWidget h4 {
+            margin-top: 0;
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            text-shadow: 0 1px 6px #a366ff;
+        }
+        #closeHelp {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            cursor: pointer;
+            color: #fff;
+            font-size: 18px;
+            transition: color 0.3s ease;
+        }
+        #closeHelp:hover {
+            color: #ddd;
+        }
+        #helpWidget input {
+            width: 100%;
+            padding: 12px;
+            margin-top: 10px;
+            margin-bottom: 15px;
+            border: 1.5px solid #3a2d5c;
+            border-radius: 8px;
+            background: #222;
+            color: #ddd;
+            font-size: 14px;
+        }
+        #helpWidget button {
+            background-color: #a366ff;
+            color: #fff;
+            border: none;
+            padding: 12px;
+            width: 100%;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            text-shadow: 0 1px 6px #3a2d5c;
+            box-shadow: 0 0 12px #a366ff, 0 0 2px #fff;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+        #helpWidget button:hover {
+            background-color: #3a2d5c;
+            transform: scale(1.05);
+        }
+    </style>
+    <script>
+        let cart = [];
+        let selectedProductName = '';
+        let selectedProductPrice = 0;
+
+        function showSection(sectionId) {
+            document.getElementById("home").classList.add("hidden");
+            document.getElementById("products").classList.add("hidden");
+            document.getElementById("cart").classList.add("hidden");
+            document.getElementById("products1").classList.add("hidden");
+
+            document.getElementById(sectionId).classList.remove("hidden");
+        }
+
+        function addToCart(productName, productPrice) {
+            let selectedSize = null;
+
+            // Проверяем, есть ли выбор размера для обуви или одежды
+            const shoeSizeElement = document.getElementById("shoe-size");
+            const clothesSizeElement = document.getElementById("clothes-size");
+
+            if (shoeSizeElement) {
+                selectedSize = shoeSizeElement.value;
+            } else if (clothesSizeElement) {
+                selectedSize = clothesSizeElement.value;
+            }
+
+            let cartContent = document.getElementById("cart-content");
+
+            if (cart.length === 0) {
+                cartContent.innerHTML = "";
+            }
+
+            cart.push({ name: productName, price: productPrice, size: selectedSize });
+
+            updateCart();
+        }
+
+        function updateCart() {
+            let cartContainer = document.getElementById("cart-content");
+            cartContainer.innerHTML = cart.length > 0 ? "" : "<p>Ваш кошик порожній.</p>";
+            
+            cart.forEach((item, index) => {
+                let div = document.createElement("div");
+                div.innerHTML = `<p>${item.name} - ${item.price} грн - Розмір: ${item.size || "Не вказано"} <button onclick="removeFromCart(${index})">❌</button></p>`;
+                cartContainer.appendChild(div);
+            });
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCart();
+        }
+
+        function clearCart() {
+            cart = [];
+            updateCart();
+        }
+
+        function payForOrder() {
+            if (cart.length === 0) {
+                alert("Ваш кошик порожній! Додайте товари перед оплатою.");
+                return;
+            }
+
+            // Открываем модальное окно выбора способа оплаты
+            openPaymentModal();
+        }
+
+        function processPayment(method) {
+            closePaymentModal();
+            if (method === "pickup") {
+                openPickupForm(); // Открываем форму самовывоза
+            } else if (method === "online") {
+                openOnlinePaymentForm(); // Открываем форму онлайн-оплаты
+            }
+        }
+
+        function openPaymentModal() {
+            document.getElementById("paymentModal").style.display = "block";
+        }
+
+        function closePaymentModal() {
+            document.getElementById("paymentModal").style.display = "none";
+        }
+
+        function selectPaymentMethod(method) {
+            closePaymentModal();
+            if (method === "pickup") {
+                openPickupForm();
+            } else if (method === "online") {
+                openOnlinePaymentForm(); // Сначала открываем форму для ввода данных доставки
+            }
+        }
+
+        // Открытие и закрытие формы самовывоза
+        function openPickupForm() {
+            document.getElementById("pickupForm").style.display = "block";
+        }
+
+        function closePickupForm() {
+            document.getElementById("pickupForm").style.display = "none";
+        }
+
+        // Открытие и закрытие формы онлайн-оплаты
+        function openOnlinePaymentForm() {
+            document.getElementById("onlinePaymentForm").style.display = "block";
+        }
+
+        function closeOnlinePaymentForm() {
+            document.getElementById("onlinePaymentForm").style.display = "none";
+        }
+
+        // Открытие и закрытие формы ввода данных карты
+        function openCardPaymentForm() {
+            document.getElementById("cardPaymentForm").style.display = "block";
+        }
+
+        function closeCardPaymentForm() {
+            document.getElementById("cardPaymentForm").style.display = "none";
+        }
+
+        // Обработка данных самовывоза
+        function submitPickupForm() {
+            const name = document.getElementById("pickupName").value;
+            const phone = document.getElementById("pickupPhone").value;
+
+            if (!name || !phone) {
+                alert("Будь ласка, заповніть всі поля для самовивозу!");
+                return;
+            }
+
+            const orderData = {
+                fullName: name,
+                phone: phone,
+                isOnline: false,
+                items: cart,
+                paymentStatus: "Товар потребує оплати на точці" // Добавлено поле статуса оплаты
+            };
+
+            sendToTelegram(orderData); // Отправляем данные заказа в Telegram
+            clearCart(); // Очищаем корзину
+            closePickupForm();
+            alert("Замовлення оформлено! Спосіб оплати: Самовивіз");
+            showSection("home");
+        }
+
+        // Обработка данных онлайн-оплаты
+        function submitOnlinePaymentForm() {
+            const name = document.getElementById("onlineName").value;
+            const phone = document.getElementById("onlinePhone").value;
+            const post = document.getElementById("onlinePost").value;
+
+            if (!name || !phone || !post) {
+                alert("Будь ласка, заповніть всі поля для онлайн-оплати!");
+                return;
+            }
+
+            closeOnlinePaymentForm();
+            openCardPaymentForm(); // После ввода данных открываем окно для ввода данных карты
+        }
+
+        // Обработка данных карты
+        function processCardPayment() {
+            const cardNumber = document.getElementById("cardNumber").value;
+            const cardExpiry = document.getElementById("cardExpiry").value;
+            const cardCVC = document.getElementById("cardCVC").value;
+
+            if (!cardNumber || !cardExpiry || !cardCVC) {
+                alert("Будь ласка, заповніть всі поля для оплати карткою!");
+                return;
+            }
+
+            alert("Оплата успішна! Дякуємо за ваше замовлення.");
+            closeCardPaymentForm();
+            completeOrder("Оплата карткою");
+        }
+
+        // Отправка данных заказа в Telegram
+        function sendToTelegram(orderData) {
+            const botToken = "7859799706:AAEoOoq7L_IZJ44151t_bhwpYZHJcSYE4Uo"; // Замініть на токен вашого бота
+            const chatId = "-4640800841"; // Замініть на ваш Chat ID (починається з "-")
+            
+            let message = "📦 *Нове замовлення*\n";
+            message += `👤 Ім'я: ${orderData.fullName}\n`;
+            message += `📞 Телефон: ${orderData.phone}\n`;
+
+            if (orderData.isOnline) {
+                message += `🏙 Місто: ${orderData.city}\n`;
+                message += `📮 Відділення Нової Пошти: ${orderData.novaPoshta}\n`;
+            }
+
+            message += "🛍 Товари:\n";
+            orderData.items.forEach((item, index) => {
+                message += `${index + 1}. ${item.name} - ${item.price} грн - Розмір: ${item.size || "Не вказано"}\n`;
+            });
+
+            message += `💳 Статус: ${orderData.paymentStatus || "Оплачено ✅"}`;
+
+            const telegramApiUrl = `https://api.telegram.org/bot${botToken}/sendMessage`;
+            const params = {
+                chat_id: chatId,
+                text: message,
+                parse_mode: "Markdown"
+            };
+
+            fetch(telegramApiUrl, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(params)
+            })
+            .then(response => response.json())
+            .then(data => console.log("Повідомлення відправлено:", data))
+            .catch(error => console.error("Помилка відправки:", error));
+        }
+
+        // Завершение заказа и обновление статуса
+        function completeOrder(paymentMethod) {
+            alert(`Замовлення оформлено! Спосіб оплати: ${paymentMethod}`);
+            
+            const orderData = {
+                fullName: document.getElementById("onlineName")?.value || "Не вказано",
+                phone: document.getElementById("onlinePhone")?.value || "Не вказано",
+                city: document.getElementById("onlineCity")?.value || "Не вказано",
+                novaPoshta: document.getElementById("onlinePost")?.value || "Не вказано",
+                isOnline: paymentMethod === "Оплата карткою",
+                items: cart
+            };
+
+            sendToTelegram(orderData); // Отправляем данные заказа в Telegram
+            clearCart();
+            showSection("home");
+        }
+
+        function updatePriceRange() {
+            const minPrice = document.getElementById("min-price").value;
+            const maxPrice = document.getElementById("max-price").value;
+            document.getElementById("price-range-label").innerText = `${minPrice} - ${maxPrice} грн`;
+        }
+
+        function showPopup(message) {
+            const popup = document.getElementById("popup");
+            popup.innerText = message;
+            popup.classList.add("show");
+            setTimeout(() => popup.classList.remove("show"), 3000);
+        }
+
+        function searchProducts() {
+            const query = document.getElementById("search-input").value.toLowerCase();
+            const products = document.querySelectorAll(".product");
+            products.forEach(product => {
+                const productName = product.querySelector("p").innerText.toLowerCase();
+                product.style.display = productName.includes(query) ? "block" : "none";
+            });
+        }
+
+        window.onload = function () {
+            console.log("Скрипт загружен.");
+            // Запуск слайд-шоу для товаров
+            startProductSlideshow('zara-slideshow', [
+                'E:\\стартап\\1111\\zara\\zara.jpg',
+                'E:\\стартап\\1111\\zara\\zara1.jpg',
+                'E:\\стартап\\1111\\zara\\zara2.jpg',
+                'E:\\стартап\\1111\\zara\\zara3.jpg'
+            ]);
+            startProductSlideshow('nike-shoes-slideshow', [
+                'E:\\стартап\\фото елементи\\photo_2025-05-13_23-35-19.jpg',
+                'E:\\стартап\\фото елементи\\photo_2025-05-13_23-35-41.jpg',
+                'E:\\стартап\\фото елементи\\photo_2025-05-13_23-36-00.jpg'
+            ]);
+            startProductSlideshow('nike-killshot-slideshow', [
+                'E:\\стартап\\фото елементи\\рн.jpg',
+                'E:\\стартап\\фото елементи\\пон.jpg',
+                'E:\\стартап\\фото елементи\\н.jpg',
+                'E:\\стартап\\фото елементи\\п.jpg'
+            ]);
+            startProductSlideshow('gucci-ace-slideshow', [
+                'https://oneclub.ua/preview/214/iUZoYSKGo3Tem54wjLf9iHAflg9qDiWjXNLkK4gHS5oTNvRuniYkRAkw1RWI.jpg',
+                'https://oneclub.ua/preview/214/i9XT9KwPeAyYpwyr0TF7Hof7leYyW7kA24tjQ3GkDSBquFj3fKHnNI5eEz6m.jpg',
+                'https://oneclub.ua/preview/214/VcqPwemgu8q6EEt5eriCCw0zo0s8403mzka3S8Lt3fqb7HBsL2ZkcINm4cQe.jpg',
+                'https://oneclub.ua/images/214/lgQAu0xSSrbZFLdvBv8kVrNuNWxxWukAocXYmKqiDVdYd5NTzpk15YPESEtu.JPG'
+            ]);
+            startProductSlideshow('louboutin-slideshow', [
+                'https://us.christianlouboutin.com/media/catalog/product/cache/e1b9885bd1bf6beec4564faa4f1294da/3/1/3160092b049-3160092b049-main_image-ecommerce-christianlouboutin-louisorlato-3160092_b049_1_1200x1200.jpg',
+                'https://us.christianlouboutin.com/media/catalog/product/cache/e1b9885bd1bf6beec4564faa4f1294da/3/1/3160092b049-3160092b049-additional_1-ecommerce-christianlouboutin-louisorlato-3160092_b049_3_1200x1200.jpg',
+                'https://us.christianlouboutin.com/media/catalog/product/cache/e1b9885bd1bf6beec4564faa4f1294da/3/1/3160092b049-3160092b049-additional_3-ecommerce-christianlouboutin-louisorlato-3160092_b049_5_1200x1200.jpg',
+                'https://us.christianlouboutin.com/media/catalog/product/cache/e1b9885bd1bf6beec4564faa4f1294da/3/1/3160092b049-3160092b049-additional_2-ecommerce-christianlouboutin-louisorlato-3160092_b049_4_1200x1200.jpg'
+            ]);
+            startProductSlideshow('valentino-slideshow', [
+                'https://media3.symbol.ua/aio-images/b6/c1/b6c18bb9b7f5f62d56743dd141213fe1/cec3e0a2-a3c9-4bb7-a4cf-20a4e52f7502.jpg',
+                'https://media3.symbol.ua/aio-images/15/91/15914949a193188905ac4d3dce8b692d/acded055-93f4-45f5-b665-a038679c2e6f.jpg',
+                'https://media3.symbol.ua/aio-images/71/41/714150544440c56a0667b44e36aebbc0/9dde3b59-0c55-4e69-835f-428b7a81b73b.jpg',
+                'https://media3.symbol.ua/aio-images/5e/f0/5ef09d46820c37d950629314b57e74b1/a424b60f-cf41-43e7-8404-a62b00c3870d.jpg'
+            ]);
+            startProductSlideshow('jacquemus-dress-slideshow', [
+                'https://parkavenue.ua/Media/shop-5099/FW23-24/Jacquemus/233DR073-1495%20990.jpg',
+                'https://parkavenue.ua/Media/shop-5099/FW23-24/Jacquemus/233DR073-1495%2099000%20(2).jpg',
+                'https://parkavenue.ua/Media/shop-5099/FW23-24/Jacquemus/233DR073-1495%2099000%20(1).jpg',
+                'https://parkavenue.ua/Media/shop-5099/FW23-24/Jacquemus/233DR073-1495%2099000%20(3).jpg'
+            ]);
+            startProductSlideshow('acne-sweater-slideshow', [
+                'https://www.acnestudios.com/dw/image/v2/AAXV_PRD/on/demandware.static/-/Sites-acne-product-catalog/default/dw27f37a59/images/A6/A60515-/2000x/A60515-DPC_A.jpg?sw=2000&sh=3000',
+                'https://www.acnestudios.com/dw/image/v2/AAXV_PRD/on/demandware.static/-/Sites-acne-product-catalog/default/dw82b0e496/images/A6/A60515-/2000x/A60515-DPC_B.jpg?sw=1120&sh=1680',
+                'https://www.acnestudios.com/dw/image/v2/AAXV_PRD/on/demandware.static/-/Sites-acne-product-catalog/default/dw547e6f19/images/A6/A60515-/2000x/A60515-DPC_C.jpg?sw=1120&sh=1680',
+                'https://www.acnestudios.com/dw/image/v2/AAXV_PRD/on/demandware.static/-/Sites-acne-product-catalog/default/dw5b982bea/images/A6/A60515-/2000x/A60515-DPC_G.jpg?sw=2000&sh=3000'
+            ]);
+            startProductSlideshow('marant-bomber-slideshow', [
+                'https://wwd.com/wp-content/uploads/2024/09/alix-earle-isabel-marant-fi.jpg?w=1000&h=563&crop=1&resize=1000%2C563'
+            ]);
+            startProductSlideshow('maxmara-coat-slideshow', [
+                'https://b2c-media.maxmara.com/sys-master/m0/MM/2025/1/9011115106/021/s3details/9011115106021-b-cielo_thumbnail.jpg#thumbnail',
+                'https://b2c-media.maxmara.com/sys-master/m0/MM/2025/1/9011115106/021/s3details/9011115106021-d-cielo.jpg#zoom',
+                'https://b2c-media.maxmara.com/sys-master/m0/MM/2025/1/9011115106/021/s3details/9011115106021-w-cielo.jpg?_gl=1*b51sbw*_ga*ODQ4MTYxNDU3LjE3NDg5NjcxOTg.*_ga_BJCF526Z00*czE3NDg5NjcxOTgkbzEkZzEkdDE3NDg5NjcyMjgkajMzJGwwJGgw*_gcl_au*MTgwOTczMTQ4OC4xNzQ4OTY3MjAx#zoom'
+            ]);
+            startProductSlideshow('lady-dior-slideshow', [
+                'https://assets.christiandior.com/is/image/diorprod/S0856ONGEM900_E01-1?$default_GHC$&crop=619,890,706,912&wid=1850&hei=2000&scale=0.875&bfc=on&qlt=85',
+                'https://assets.christiandior.com/is/image/diorprod/S0856ONGEM900_E03-1?$default_GHC$&crop=653,911,670,866&wid=1536&hei=1661&scale=0.7265&bfc=on&qlt=85',
+                'https://assets.christiandior.com/is/image/diorprod/S0856ONGEM900_E06-1?$default_GHC$&crop=755,670,428,663&wid=1536&hei=1661&scale=0.7265&bfc=on&qlt=85',
+                'https://assets.christiandior.com/is/image/diorprod/S0856ONGEM900_E09-1?$bottom_left_GH_GHC$&crop=0,0,2000,2000&wid=1536&hei=1661&scale=0.8303&bfc=on&qlt=85',
+                'https://assets.christiandior.com/is/image/diorprod/LOOK_F_23_2_LOOK_709_E15?$lookDefault_GH-GHC$&crop=568,0,1864,2000&wid=1536&hei=1661&scale=0.8303&bfc=on&qlt=85'
+            ]);
+            startProductSlideshow('hermes-carre-slideshow', [
+                'https://assets.hermes.com/is/image/hermesproduct/un-carre-sur-l-herbe-scarf-90--004181S%2001-worn-1-0-0-1600-1600-q99_g.jpg',
+                'https://assets.hermes.com/is/image/hermesproduct/un-carre-sur-l-herbe-scarf-90--004181S%2001-flat-wm-3-0-0-1600-1600-q99_g.jpg',
+                'https://assets.hermes.com/is/image/hermesproduct/un-carre-sur-l-herbe-scarf-90--004181S%2001-detail-wm-5-0-0-1600-1600-q99_g.jpg'
+            ]);
+            startProductSlideshow('cartier-love-slideshow', [
+                'https://www.cartier.com/variants/images/1647597277058376/img1/w1242_tpadding12.jpg',
+                'https://www.cartier.com/variants/images/1647597277058376/img2/w1242_tpadding12.jpg',
+                'https://www.cartier.com/variants/images/1647597277058376/img5/w1242_tpadding12.jpg',
+                'https://www.cartier.com/variants/images/1647597277058376/img9/w1242_tpadding12.jpg'
+            ]);
+            startProductSlideshow('mm6-margiela-tshirt-slideshow', [
+                'https://img01.ztat.net/article/spp-media-p1/a01ac2cd1d91410fbc4a0105f941e2c7/fe065296163e4cbdb3b47cc411b00af8.jpg?imwidth=762&filter=packshot',
+                'https://img01.ztat.net/article/spp-media-p1/70168ede53524bb4b1dc3764fe4676e0/deb60c4eff244e53a5211085950fa2be.jpg?imwidth=1800'
+            ]);
+            startProductSlideshow('rick-owens-geth-belas-slideshow', [
+                'https://img2.ans-media.com/i/1084x1626/SS25-SPM0OF-99X_F1_PRM.webp?v=1737722464',
+                'https://img2.ans-media.com/i/1084x1626/SS25-SPM0OF-99X_F3_PRM.webp?v=1737723773',
+                'https://img2.ans-media.com/i/1084x1626/SS25-SPM0OF-99X_F4_PRM.webp?v=1737723543'
+            ]);
+            startProductSlideshow('enfants-riches-deprimes-slideshow', [
+                'https://justinreed.com/cdn/shop/files/1_09ed2206-1cc2-44c6-8b23-a1f47481d8d2.jpg?v=1746057758&width=1100',
+                'https://justinreed.com/cdn/shop/files/DSC03057.jpg?v=1746145100&width=1100',
+                'https://justinreed.com/cdn/shop/files/2_26d8b41b-38f6-41b9-9eb0-dd09b10bbb56.jpg?v=1746057758&width=1100'
+            ]);
+            startProductSlideshow('3b-sports-icon-outerwear-slideshow', [
+                'https://balenciaga.dam.kering.com/m/68656e71f8fdbe77/Large-773668TPVQ21000_D.jpg?v=3',
+                'https://balenciaga.dam.kering.com/m/21ee61933f9b1fff/Large-773668TPVQ21000_F.jpg?v=3',
+                'https://balenciaga.dam.kering.com/m/6e17a350af7bc1d2/Large-773668TPV21000_J.jpg?v=1',
+                'https://balenciaga.dam.kering.com/m/3d349e98be66e20a/Large-773668TPV21000_H.jpg?v=1'
+            ]);
+            startProductSlideshow('under-armour-asap-rocky-slideshow', [
+                'https://cdn-images.farfetch-contents.com/20/61/08/64/20610864_50508491_1000.jpg',
+                'https://cdn-images.farfetch-contents.com/20/61/08/64/20610864_50508501_1000.jpg',
+                'https://cdn-images.farfetch-contents.com/20/61/08/64/20610864_50508499_1000.jpg'
+            ]);
+        };
+
+        function showProductWindow(windowId) {
+            // Скрываем все окна товаров
+            document.querySelectorAll('.product-window').forEach(window => {
+                window.classList.add('hidden');
+            });
+            // Показываем выбранное окно
+            document.getElementById(windowId).classList.remove('hidden');
+            // Переключаемся на вкладку "Товары"
+            showSection('products');
+        }
+
+        function showProductDetails(productName, productPrice, productType, productImages, productDescription) {
+            selectedProductName = productName;
+            selectedProductPrice = productPrice;
+            showSection('products1');
+
+            // Особое описание и фото для Nike Swarovski Air Max Plus 'Moonlight'
+            if (
+                productName === "Nike Swarovski Air Max Plus 'Moonlight'" ||
+                productName === "Nike Swarovski Air Max Plus &#39;Moonlight&#39;"
+            ) {
+                document.getElementById('product-details').innerHTML = `
+                    <div style="display: flex; align-items: flex-start; gap: 20px;">
+                        <div style="flex: 1; max-width: 220px;">
+                            <div class="product-slideshow zara-animate" id="nike-details-slideshow"></div>
+                        </div>
+                        <div style="flex: 2;">
+                            <h3>Nike Swarovski Air Max Plus 'Moonlight'</h3>
+                            <p>Ціна: 8000 грн</p>
+                            <p>
+                                Nike Air Max Plus x Swarovski "Moonlight" — эксклюзивная коллаборация с кристаллами Swarovski. Верх из текстиля и синтетики украшен мерцающими вставками, вдохновлёнными ночным небом. Эффектный дизайн, премиальные матеріали и фирменная амортизация Air Max делают эту пару идеальной для ярких образов.
+                            </p>
+                            <label for="shoe-size">Оберіть розмір:</label>
+                            <select id="shoe-size" style="padding: 5px; border-radius: 5px; border: 1px solid #ccc;">
+                                <option value="38">38</option>
+                                <option value="39">39</option>
+                                <option value="40">40</option>
+                                <option value="41">41</option>
+                                <option value="42">42</option>
+                            </select>
+                            <button class="cart-btn" onclick="addToCart(selectedProductName, selectedProductPrice)">Додати до кошика</button>
+                        </div>
+                    </div>
+                `;
+                startProductSlideshow('nike-details-slideshow', [
+                    'E:\\стартап\\фото елементи\\photo_2025-05-13_23-35-19.jpg',
+                    'E:\\стартап\\фото елементи\\photo_2025-05-13_23-35-41.jpg',
+                    'E:\\стартап\\фото елементи\\photo_2025-05-13_23-36-00.jpg'
+                ]);
+                return;
+            }
+
+            // Особое описание и фото для Nike Killshot 2 PRM Black
+            if (productName === "Nike Killshot 2 PRM Black") {
+                document.getElementById('product-details').innerHTML = `
+                    <div style="display: flex; align-items: flex-start; gap: 20px;">
+                        <div style="flex: 1; max-width: 220px;">
+                            <div class="product-slideshow zara-animate" id="nike-killshot-details-slideshow"></div>
+                        </div>
+                        <div style="flex: 2;">
+                            <h3>Nike Killshot 2 PRM Black</h3>
+                            <p>Ціна: 4200 грн</p>
+                            <p>
+                                Nike Killshot 2 PRM Black — стильні кросівки з преміальних матеріалів, універсальний чорний колір, класичний силует, ідеально підходять для повсякденного образу.
+                            </p>
+                            <label for="shoe-size">Оберіть розмір:</label>
+                            <select id="shoe-size" style="padding: 5px; border-radius: 5px; border: 1px solid #ccc;">
+                                <option value="38">38</option>
+                                <option value="39">39</option>
+                                <option value="40">40</option>
+                                <option value="41">41</option>
+                                <option value="42">42</option>
+                            </select>
+                            <button class="cart-btn" onclick="addToCart(selectedProductName, selectedProductPrice)">Додати до кошика</button>
+                        </div>
+                    </div>
+                `;
+                startProductSlideshow('nike-killshot-details-slideshow', [
+                    'E:\\стартап\\фото елементи\\рн.jpg',
+                    'E:\\стартап\\фото елементи\\пон.jpg',
+                    'E:\\стартап\\фото елементи\\н.jpg',
+                    'E:\\стартап\\фото елементи\\п.jpg'
+                ]);
+                return;
+            }
+
+            // Формируем содержимое для отображения товара
+            let detailsHtml = `
+                <div style="display: flex; align-items: flex-start; gap: 20px;">
+                    <div style="flex: 1; max-width: 200px;">
+                        <div class="slideshow-container">
+            `;
+
+            productImages.forEach((image, index) => {
+                detailsHtml += `
+                    <div class="mySlides" style="display: ${index === 0 ? 'block' : 'none'};">
+                        <img src="${image}" style="width: 100%; border-radius: 10px;">
+                    </div>
+                `;
+            });
+
+            detailsHtml += `
+                            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+                        </div>
+                    </div>
+                    <div style="flex: 2;">
+                        <h3>${productName}</h3>
+                        <p>Ціна: ${productPrice} грн</p>
+                        <p>${productDescription.replace(/<a\b[^>]*>.*?<\/a>/gi, '')}</p>
+            `;
+
+            if (productType === 'shoes') {
+                detailsHtml += `
+                    <label for="shoe-size">Оберіть розмір:</label>
+                    <select id="shoe-size" style="padding: 5px; border-radius: 5px; border: 1px solid #ccc;">
+                        <option value="38">38</option>
+                        <option value="39">39</option>
+                        <option value="40">40</option>
+                        <option value="41">41</option>
+                        <option value="42">42</option>
+                    </select>
+                `;
+            } else if (productType === 'clothes') {
+                detailsHtml += `
+                    <label for="clothes-size">Оберіть розмір:</label>
+                    <select id="clothes-size" style="padding: 5px; border-radius: 5px; border: 1px solid #ccc;">
+                        <option value="S">S</option>
+                        <option value="M">M</option>
+                        <option value="L">L</option>
+                        <option value="XL">XL</option>
+                    </select>
+                `;
+            }
+
+            detailsHtml += `
+                        <button class="cart-btn" onclick="addToCart(selectedProductName, selectedProductPrice)">Додати до кошика</button>
+                        </div>
+                    </div>
+                `;
+
+            // Обновляем содержимое вкладки "Товары 1"
+            document.getElementById('product-details').innerHTML = detailsHtml;
+
+            // Инициализируем слайд-шоу
+            initSlideshow();
+        }
+
+        function initSlideshow() {
+            let slideIndex = 0;
+            const slides = document.querySelectorAll('.mySlides');
+            const showSlides = (n) => {
+                slides.forEach((slide, index) => {
+                    slide.style.display = index === n ? 'block' : 'none';
+                });
+            };
+
+            const plusSlides = (n) => {
+                slideIndex = (slideIndex + n + slides.length) % slides.length;
+                showSlides(slideIndex);
+            };
+
+            window.plusSlides = plusSlides;
+            showSlides(slideIndex);
+        }
+
+        function startProductSlideshow(slideshowId, images) {
+            const slideshow = document.getElementById(slideshowId);
+            if (!slideshow) return;
+            slideshow.innerHTML = '';
+            let slideIndex = 0;
+            const slides = images.map((src, index) => {
+                const img = document.createElement('img');
+                img.src = src;
+                img.alt = "Сукня Zara";
+                img.style.objectFit = "cover";
+                img.style.objectPosition = "center center";
+                if (index === 0) img.classList.add('active');
+                slideshow.appendChild(img);
+                return img;
+            });
+
+            // Центрирование для zara-animate
+            if (slideshow.classList.contains('zara-animate')) {
+                slideshow.style.display = 'flex';
+                slideshow.style.justifyContent = 'center';
+                slideshow.style.alignItems = 'center';
+            }
+
+            setInterval(() => {
+                slides[slideIndex].classList.remove('active');
+                slideIndex = (slideIndex + 1) % slides.length;
+                slides[slideIndex].classList.add('active');
+            }, 2500);
+        }
+
+        function updateSizeFilter(type) {
+            const sizeFilter = document.getElementById("filter-size");
+            sizeFilter.innerHTML = ""; // Очищаем текущие опции
+
+            if (type === "clothes") {
+                sizeFilter.innerHTML = `
+                    <option value="all">Всі</option>
+                    <option value="S">S</option>
+                    <option value="M">M</option>
+                    <option value="L">L</option>
+                    <option value="XL">XL</option>
+                `;
+            } else if (type === "shoes") {
+                sizeFilter.innerHTML = `
+                    <option value="all">Всі</option>
+                    <option value="35">35</option>
+                    <option value="36">36</option>
+                    <option value="37">37</option>
+                    <option value="38">38</option>
+                    <option value="39">39</option>
+                    <option value="40">40</option>
+                    <option value="41">41</option>
+                    <option value="42">42</option>
+                    <option value="43">43</option>
+                    <option value="44">44</option>
+                    <option value="45">45</option>
+                    <option value="46">46</option>
+                    <option value="47">47</option>
+                `;
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const botToken = '8092810840:AAGxcOnyS-zqpFmdlwXJqxhAG0zr1rO3uug';
+            const chatId = '-4903551379';
+
+            const helpWidget = document.getElementById('helpWidget');
+            const helpButton = document.getElementById('helpButton');
+            const closeHelp = document.getElementById('closeHelp');
+
+            if (!helpWidget || !helpButton || !closeHelp) {
+                console.error('Не удалось найти элементы виджета помощи.');
+                return;
+            }
+
+            helpButton.addEventListener('click', () => {
+                helpWidget.style.display = 'block';
+                helpButton.style.display = 'none';
+            });
+
+            closeHelp.addEventListener('click', () => {
+                helpWidget.style.display = 'none';
+                helpButton.style.display = 'block';
+            });
+
+            function sendHelpRequest() {
+                const contactInput = document.getElementById('contactInput');
+                const contact = contactInput.value.trim();
+
+                if (contact === '') {
+                    alert('Будь ласка, введіть контактну інформацію.');
+                    return;
+                }
+
+                const message = `📩 Новий запит у техпідтримку:\n\nКонтакт: ${contact}`;
+
+                fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        chat_id: chatId,
+                        text: message
+                    })
+                })
+                .then(res => {
+                    if (res.ok) {
+                        alert('Ваш запит відправлено!');
+                        contactInput.value = '';
+                        helpWidget.style.display = 'none';
+                        helpButton.style.display = 'block';
+                    } else {
+                        alert('Не вдалося відправити запит. Спробуйте пізніше.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Помилка:', error);
+                    alert('Сталася помилка. Спробуйте пізніше.');
+                });
+            }
+
+            document.querySelector('#helpWidget button').addEventListener('click', sendHelpRequest);
+        });
+    </script>
+</head>
+<body>
+<div class="bg-blobs">
+    <div class="bg-blob bg-blob1"></div>
+    <div class="bg-blob bg-blob2"></div>
+    <div class="bg-blob bg-blob3"></div>
+</div>
+<header>ABGKS – ваш гід у світі ексклюзивної моди!</header>
+<nav>
+    <a href="#" onclick="showSection('home')" class="home-link" style="padding:0 18px 0 0; background:none; border:none; box-shadow:none;">
+        <img src="E:\стартап\1111\photo_2025-05-10_10-53-14.jpg" alt="ABGKS" style="height:38px; vertical-align:middle; border-radius:8px; box-shadow:0 0 8px #a366ff;">
+        <span style="vertical-align:middle; font-size:22px; font-family:'Playfair Display',serif; font-weight:700; color:#fff; letter-spacing:2px; margin-left:10px; text-shadow:0 1px 8px #a366ff;">info</span>
+    </a>
+    <img src="E:\стартап\free-icon-shopping-bag-4903482.png" alt="Товари" class="products-icon" onclick="showSection('products')" style="position: absolute; top: 50%; left: 145px; transform: translateY(-50%);">
+    <img src="E:\стартап\free-icon-shopping-cart-12679101.png" alt="Кошик" class="cart-icon" onclick="showSection('cart')">
+    <div class="dropdown">
+        <a href="#" class="category-link">Жіноче</a>
+        <div class="dropdown-content">
+            <p onclick="showProductWindow('women-shoes')">ВЗУТТЯ</p>
+            <p onclick="showProductWindow('women-clothes')">ОДЯГ</p>
+            <p onclick="showProductWindow('women-accessories')">АКСЕСУАРИ</p>
+        </div>
+    </div>
+    <div class="dropdown">
+        <a href="#" class="category-link">Чоловіче</a>
+        <div class="dropdown-content">
+            <p onclick="showProductWindow('men-shoes')">ВЗУТТЯ</p>
+            <p onclick="showProductWindow('men-clothes')">ОДЯГ</p>
+            <p onclick="showProductWindow('men-accessories')">АКСЕСУАРИ</p>
+        </div>
+    </div>
+    <a href="#" onclick="showSection('products1')" class="category-link hidden-link">Товари 1</a>
+</nav>
+<div id="home" class="container">
+    <h2>Ласкаво просимо в ABGKS!</h2>
+    <p>ABGKS – магазин, де стиль та якість не мають кордонів. Ми пропонуємо вам трендовий одяг від світових брендів напряму з-за кордону.</p>
+    <p>✔ Оригінальна продукція – тільки справжній одяг від відомих брендів.<br>
+       ✔ Передзамовлення та пошук рідкісних товарів – знайдемо та привеземо те, що ви шукаєте.<br>
+       ✔ Чат-підтримка – ставте питання, надсилайте запити на передзамовлення.<br>
+       ✔ Зручна покупка – обирайте товари та оформлюйте замовлення в декілька кліків.</p>
+</div>
+<div id="products" class="container hidden">
+    <div id="product-content">
+        <!-- Женские товары -->
+        <div id="women-shoes" class="product-window hidden">
+            <h3>Жіноче ВЗУТТЯ</h3>
+            <div class="product">
+                <div class="product-slideshow zara-animate" id="gucci-ace-slideshow"></div>
+                <p>Gucci Ace Sneaker with Embroidery</p>
+                <button class="cart-btn" onclick="showProductDetails(
+                    'Gucci Ace Sneaker with Embroidery',
+                    18500,
+                    'shoes',
+                    [
+                        'https://oneclub.ua/preview/214/iUZoYSKGo3Tem54wjLf9iHAflg9qDiWjXNLkK4gHS5oTNvRuniYkRAkw1RWI.jpg',
+                        'https://oneclub.ua/preview/214/i9XT9KwPeAyYpwyr0TF7Hof7leYyW7kA24tjQ3GkDSBquFj3fKHnNI5eEz6m.jpg',
+                        'https://oneclub.ua/preview/214/VcqPwemgu8q6EEt5eriCCw0zo0s8403mzka3S8Lt3fqb7HBsL2ZkcINm4cQe.jpg',
+                        'https://oneclub.ua/images/214/lgQAu0xSSrbZFLdvBv8kVrNuNWxxWukAocXYmKqiDVdYd5NTzpk15YPESEtu.JPG'
+                    ],
+                    'Gucci Ace Sneaker with Embroidery — культові кеди з вишивкою, преміальна шкіра, італійська якість, унікальний дизайн.'
+                )">Переглянути</button>
+            </div>
+            <div class="product">
+                <div class="product-slideshow zara-animate" id="louboutin-slideshow"></div>
+                <p>Christian Louboutin Louis Orlato Flat High Top Sneaker</p>
+                <button class="cart-btn" onclick="showProductDetails(
+                    'Christian Louboutin Louis Orlato Flat High Top Sneaker',
+                    29500,
+                    'shoes',
+                    [
+                        'https://us.christianlouboutin.com/media/catalog/product/cache/e1b9885bd1bf6beec4564faa4f1294da/3/1/3160092b049-3160092b049-main_image-ecommerce-christianlouboutin-louisorlato-3160092_b049_1_1200x1200.jpg',
+                        'https://us.christianlouboutin.com/media/catalog/product/cache/e1b9885bd1bf6beec4564faa4f1294da/3/1/3160092b049-3160092b049-additional_1-ecommerce-christianlouboutin-louisorlato-3160092_b049_3_1200x1200.jpg',
+                        'https://us.christianlouboutin.com/media/catalog/product/cache/e1b9885bd1bf6beec4564faa4f1294da/3/1/3160092b049-3160092b049-additional_3-ecommerce-christianlouboutin-louisorlato-3160092_b049_5_1200x1200.jpg',
+                        'https://us.christianlouboutin.com/media/catalog/product/cache/e1b9885bd1bf6beec4564faa4f1294da/3/1/3160092b049-3160092b049-additional_2-ecommerce-christianlouboutin-louisorlato-3160092_b049_4_1200x1200.jpg'
+                    ],
+                    'Christian Louboutin Louis Orlato Flat High Top Sneaker — розкішні високі кеди з фірмовою червоною підошвою, ексклюзивний стиль.'
+                )">Переглянути</button>
+            </div>
+            <div class="product">
+                <div class="product-slideshow zara-animate" id="valentino-slideshow"></div>
+                <p>Valentino Garavani Rockrunner Sneaker</p>
+                <button class="cart-btn" onclick="showProductDetails(
+                    'Valentino Garavani Rockrunner Sneaker',
+                    17500,
+                    'shoes',
+                    [
+                        'https://media3.symbol.ua/aio-images/b6/c1/b6c18bb9b7f5f62d56743dd141213fe1/cec3e0a2-a3c9-4bb7-a4cf-20a4e52f7502.jpg',
+                        'https://media3.symbol.ua/aio-images/15/91/15914949a193188905ac4d3dce8b692d/acded055-93f4-45f5-b665-a038679c2e6f.jpg',
+                        'https://media3.symbol.ua/aio-images/71/41/714150544440c56a0667b44e36aebbc0/9dde3b59-0c55-4e69-835f-428b7a81b73b.jpg',
+                        'https://media3.symbol.ua/aio-images/5e/f0/5ef09d46820c37d950629314b57e74b1/a424b60f-cf41-43e7-8404-a62b00c3870d.jpg'
+                    ],
+                    'Valentino Garavani Rockrunner Sneaker — легендарні кросівки з камуфляжним принтом, поєднання стилю та комфорту.'
+                )">Переглянути</button>
+            </div>
+        </div>
+        <div id="women-clothes" class="product-window hidden">
+            <h3>Жіночий ОДЯГ</h3>
+            <div class="product">
+                <div id="zara-slideshow" class="product-slideshow zara-animate"></div>
+                <p>Сукня Zara</p>
+                <button class="cart-btn" onclick="showProductDetails(
+                    'Сукня Zara', 
+                    1200, 
+                    'clothes', 
+                    [
+                        'E:\\стартап\\1111\\zara\\zara.jpg',
+                        'E:\\стартап\\1111\\zara\\zara1.jpg',
+                        'E:\\стартап\\1111\\zara\\zara2.jpg',
+                        'E:\\стартап\\1111\\zara\\zara3.jpg'
+                    ], 
+                    'Сукня виготовлена з двох тканин: легкої напівпрозорої тканини та матової софт тканини, яка відчувається на тілі, як друга шкіра. Зверху має силіконову стрічку для фіксації топа та комфортного носіння. Матеріал добре пропускає повітря, стійкий до деформацій, не парить шкіру та не викликає алергічних реакцій. Догляд: прати при низьких температурах до 40 градусів, також не використовувати режим сушки. Тканину сіткою прасувати лише відпарювачем, а софт тканину, обходячи брендовані елементи або навиворіт.'
+                )">Переглянути</button>
+            </div>
+            <!-- Новые товары -->
+            <div class="product">
+                <div id="jacquemus-dress-slideshow" class="product-slideshow zara-animate"></div>
+                <p>Сукня від Jacquemus (Jacquemus Dress, Франція)</p>
+                <button class="cart-btn" onclick="showProductDetails(
+                    'Сукня від Jacquemус',
+                    29500,
+                    'clothes',
+                    [
+                        'https://parkavenue.ua/Media/shop-5099/FW23-24/Jacquemus/233DR073-1495%20990.jpg',
+                        'https://parkavenue.ua/Media/shop-5099/FW23-24/Jacquemus/233DR073-1495%2099000%20(2).jpg',
+                        'https://parkavenue.ua/Media/shop-5099/FW23-24/Jacquemus/233DR073-1495%2099000%20(1).jpg',
+                        'https://parkavenue.ua/Media/shop-5099/FW23-24/Jacquemus/233DR073-1495%2099000%20(3).jpg'
+                    ],
+                    'Сукня Jacquemus — асиметричний крій, сучасний французький стиль, преміальні матеріали.'
+                )">Переглянути</button>
+            </div>
+            <div class="product">
+                <div id="acne-sweater-slideshow" class="product-slideshow zara-animate"></div>
+                <p>Светр/Кардиган від Acne Studios (Acne Studios Sweater, Швеція)</p>
+                <button class="cart-btn" onclick="showProductDetails(
+                    'Светр/Кардиган від Acne Studios',
+                    18500,
+                    'clothes',
+                    [
+                        'https://www.acnestudios.com/dw/image/v2/AAXV_PRD/on/demandware.static/-/Sites-acne-product-catalog/default/dw27f37a59/images/A6/A60515-/2000x/A60515-DPC_A.jpg?sw=2000&sh=3000',
+                        'https://www.acnestudios.com/dw/image/v2/AAXV_PRD/on/demandware.static/-/Sites-acne-product-catalog/default/dw82b0e496/images/A6/A60515-/2000x/A60515-DPC_B.jpg?sw=1120&sh=1680',
+                        'https://www.acnestudios.com/dw/image/v2/AAXV_PRD/on/demandware.static/-/Sites-acne-product-catalog/default/dw547e6f19/images/A6/A60515-/2000x/A60515-DPC_C.jpg?sw=1120&sh=1680',
+                        'https://www.acnestudios.com/dw/image/v2/AAXV_PRD/on/demandware.static/-/Sites-acne-product-catalog/default/dw5b982bea/images/A6/A60515-/2000x/A60515-DPC_G.jpg?sw=2000&sh=3000'
+                    ],
+                    'Светр/Кардиган Acne Studios — об\'ємна в\'язка, трендовий скандинавський дизайн, натуральна шерсть.'
+                )">Переглянути</button>
+            </div>
+            <div class="product">
+                <div id="marant-bomber-slideshow" class="product-slideshow zara-animate"></div>
+                <p>Куртка-бомбер від Isabel Marant (Isabel Marant Bomber, Франція)</p>
+                <button class="cart-btn" onclick="showProductDetails(
+                    'Куртка-бомбер від Isabel Marant',
+                    21000,
+                    'clothes',
+                    [
+                        'https://wwd.com/wp-content/uploads/2024/09/alix-earle-isabel-marant-fi.jpg?w=1000&h=563&crop=1&resize=1000%2C563'
+                    ],
+                    'Куртка-бомбер Isabel Marant — оверсайз, сучасний французький стиль, комфорт і універсальність.'
+                )">Переглянути</button>
+            </div>
+            <div class="product">
+                <div id="maxmara-coat-slideshow" class="product-slideshow zara-animate"></div>
+                <p>Пальто-кокон від Max Mara (Max Mara Cocoon Coat, Італія)</p>
+                <button class="cart-btn" onclick="showProductDetails(
+                    'Пальто-кокон від Max Mara',
+                    35000,
+                    'clothes',
+                    [
+                        'https://b2c-media.maxmara.com/sys-master/m0/MM/2025/1/9011115106/021/s3details/9011115106021-b-cielo_thumbnail.jpg#thumbnail',
+                        'https://b2c-media.maxmara.com/sys-master/m0/MM/2025/1/9011115106/021/s3details/9011115106021-d-cielo.jpg#zoom',
+                        'https://b2c-media.maxmara.com/sys-master/m0/MM/2025/1/9011115106/021/s3details/9011115106021-w-cielo.jpg?_gl=1*b51sbw*_ga*ODQ4MTYxNDU3LjE3NDg5NjcxOTg.*_ga_BJCF526Z00*czE3NDg5NjcxOTgkbzEkZzEkdDE3NDg5NjcyMjgkajMzJGwwJGgw*_gcl_au*MTgwOTczMTQ4OC4xNzQ4OTY3MjAx#zoom'
+                    ],
+                    'Пальто-кокон Max Mara — італійська класика, елегантний крій, преміальна шерсть.'
+                )">Переглянути</button>
+            </div>
+        </div>
+        <div id="women-accessories" class="product-window hidden">
+            <h3>Жіночі АКСЕСУАРИ</h3>
+            <div class="product">
+                <div id="lady-dior-slideshow" class="product-slideshow zara-animate"></div>
+                <p>Сумка Lady Dior (Dior, Франція)</p>
+                <button class="cart-btn" onclick="showProductDetails(
+                    'Сумка Lady Dior',
+                    145000,
+                    'accessory',
+                    [
+                        'https://assets.christiandior.com/is/image/diorprod/S0856ONGEM900_E01-1?$default_GHC$&crop=619,890,706,912&wid=1850&hei=2000&scale=0.875&bfc=on&qlt=85',
+                        'https://assets.christiandior.com/is/image/diorprod/S0856ONGEM900_E03-1?$default_GHC$&crop=653,911,670,866&wid=1536&hei=1661&scale=0.7265&bfc=on&qlt=85',
+                        'https://assets.christiandior.com/is/image/diorprod/S0856ONGEM900_E06-1?$default_GHC$&crop=755,670,428,663&wid=1536&hei=1661&scale=0.7265&bfc=on&qlt=85',
+                        'https://assets.christiandior.com/is/image/diorprod/S0856ONGEM900_E09-1?$bottom_left_GH_GHC$&crop=0,0,2000,2000&wid=1536&hei=1661&scale=0.8303&bfc=on&qlt=85',
+                        'https://assets.christiandior.com/is/image/diorprod/LOOK_F_23_2_LOOK_709_E15?$lookDefault_GH-GHC$&crop=568,0,1864,2000&wid=1536&hei=1661&scale=0.8303&bfc=on&qlt=85'
+                    ],
+                    'Сумка Lady Dior — культова модель, впізнаваний дизайн, преміальні матеріали.'
+                )">Переглянути</button>
+            </div>
+            <div class="product">
+                <div id="hermes-carre-slideshow" class="product-slideshow zara-animate"></div>
+                <p>Шовковий платок Carré (Hermès, Франція)</p>
+                <button class="cart-btn" onclick="showProductDetails(
+                    'Шовковий платок Carré',
+                    35000,
+                                       'accessory',
+                    [
+                        'https://assets.hermes.com/is/image/hermesproduct/un-carre-sur-l-herbe-scarf-90--004181S%2001-worn-1-0-0-1600-1600-q99_g.jpg',
+                        'https://assets.hermes.com/is/image/hermesproduct/un-carre-sur-l-herbe-scarf-90--004181S%2001-flat-wm-3-0-0-1600-1600-q99_g.jpg',
+                        'https://assets.hermes.com/is/image/hermesproduct/un-carre-sur-l-herbe-scarf-90--004181S%2001-detail-wm-5-0-0-1600-1600-q99_g.jpg'
+                    ],
+                    'Шовковий платок Hermès Carré — ікона стилю, французька якість, унікальні принти.'
+                )">Переглянути</button>
+            </div>
+            <div class="product">
+                <div id="cartier-love-slideshow" class="product-slideshow zara-animate"></div>
+                <p>Браслет Love (Cartier, Франція)</p>
+                <button class="cart-btn" onclick="showProductDetails(
+                    'Браслет Love',
+                    210000,
+                    'accessory',
+                    [
+                        'https://www.cartier.com/variants/images/1647597277058376/img1/w1242_tpadding12.jpg',
+                        'https://www.cartier.com/variants/images/1647597277058376/img2/w1242_tpadding12.jpg',
+                        'https://www.cartier.com/variants/images/1647597277058376/img5/w1242_tpadding12.jpg',
+                        'https://www.cartier.com/variants/images/1647597277058376/img9/w1242_tpadding12.jpg'
+                    ],
+                    'Браслет Cartier Love — символ кохання, розкішний дизайн, золото Cartier.'
+                )">Переглянути</button>
+            </div>
+        </div>
+        <!-- Мужские товары -->
+        <div id="men-shoes" class="product-window hidden">
+            <h3>Чоловіче ВЗУТТЯ</h3>
+            <div class="product">
+                <div id="botte-steroid-pour-homme-slideshow" class="product-slideshow zara-animate"></div>
+                <p>Botte Steroid Pour Homme en Noir</p>
+                <button class="cart-btn" onclick="showProductDetails(
+                    'Botte Steroid Pour Homme en Noir',
+                    29500,
+                    'shoes',
+                    [
+                        'https://images.vestiairecollective.com/images/resized/w=1024,q=75,f=auto,/produit/black-synthetic-balenciaga-boots-38400918-1_2.jpg',
+                        'https://images.vestiairecollective.com/images/resized/w=1024,q=75,f=auto,/produit/black-synthetic-balenciaga-boots-38400918-2_2.jpg',
+                        'https://images.vestiairecollective.com/images/resized/w=1024,q=75,f=auto,/produit/black-synthetic-balenciaga-boots-38400918-3_2.jpg',
+                        'https://images.vestiairecollective.com/images/resized/w=1024,q=75,f=auto,/produit/black-synthetic-balenciaga-boots-38400918-6_2.jpg'
+                    ],
+                    'Balenciaga Botte Steroid Pour Homme en Noir — ультрамодні чоловічі чоботи, футуристичний дизайн, преміальні матеріали, чорний колір.'
+                )">Переглянути</button>
+            </div>
+            <div class="product">
+                <div id="velcro-vulcanized-sneakers-slideshow" class="product-slideshow zara-animate"></div>
+                <p>Velcro Vulcanized Sneakers</p>
+                <button class="cart-btn" onclick="showProductDetails(
+                    'Velcro Vulcanized Sneakers',
+                    8900,
+                    'shoes',
+                    [
+                        'https://image-cdn.hypb.st/https%3A%2F%2Fs3.store.hypebeast.com%2Fmedia%2Fimage%2F4d%2F7f%2FShoes_3_1-2ed270b789d647a9c3efd4cd178c.jpg?fit=max&w=1080&q=90',
+                        'https://image-cdn.hypb.st/https%3A%2F%2Fs3.store.hypebeast.com%2Fmedia%2Fimage%2Ffc%2F9b%2FShoes_3_2-79db4fd40d88354654243be1712a.jpg?fit=max&w=1080&q=90',
+                        'https://image-cdn.hypb.st/https%3A%2F%2Fs3.store.hypebeast.com%2Fmedia%2Fimage%2Fc5%2Fa3%2FShoes_3_3-a24cc209000d754407035fee62f0.jpg?fit=max&w=1080&q=90',
+                        'https://image-cdn.hypb.st/https%3A%2F%2Fs3.store.hypebeast.com%2Fmedia%2Fimage%2Fa1%2F04%2FShoes_3_4-1e0d53d18f4015524eed33d91bdb.jpg?fit=max&w=1080&q=90'
+                    ],
+                    'Velcro Vulcanized Sneakers — стильні кеди з липучками, сучасний дизайн, зручна посадка, універсальний вибір для міського стилю.'
+                )">Переглянути</button>
+            </div>
+            <div class="product">
+                <div id="jordan-1-retro-low-og-sp-travis-scott-olive-slideshow" class="product-slideshow zara-animate"></div>
+                <p>Jordan 1 Retro Low OG SP Travis Scott Olive</p>
+                <button class="cart-btn" onclick="showProductDetails(
+                    'Jordan 1 Retro Low OG SP Travis Scott Olive',
+                    18500,
+                    'shoes',
+                    [
+                        'https://sneakersbanda.ua/images/thumbnails/530/530/detailed/2033/Air-Jordan-1-Retro-Low-OG-SP-Travis-Scott-Olive-W-Product_op7x-lj.jpg',
+                        'https://sneakersbanda.ua/images/thumbnails/530/530/detailed/2033/img12_b5uf-gh.jpg',
+                        'https://sneakersbanda.ua/images/thumbnails/530/530/detailed/2033/img28_szrh-lx.jpg',
+                        'https://sneakersbanda.ua/images/thumbnails/530/530/detailed/2033/img30_y90a-b6.jpg'
+                    ],
+                    'Jordan 1 Retro Low OG SP Travis Scott Olive — лімітовані кросівки у співпраці з Travis Scott, унікальний дизайн, преміальні матеріали, оливковий акцент.'
+                )">Переглянути</button>
+            </div>
+            <div class="product">
+                <div id="under-armour-asap-rocky-slideshow" class="product-slideshow zara-animate"></div>
+                <p>Under Armour x ASAP Rocky</p>
+                <button class="cart-btn" onclick="showProductDetails(
+                    'Under Armour x ASAP Rocky',
+                    12500,
+                    'shoes',
+                    [
+                        'https://cdn-images.farfetch-contents.com/20/61/08/64/20610864_50508491_1000.jpg',
+                        'https://cdn-images.farfetch-contents.com/20/61/08/64/20610864_50508501_1000.jpg',
+                        'https://cdn-images.farfetch-contents.com/20/61/08/64/20610864_50508499_1000.jpg'
+                    ],
+                    'Under Armour x ASAP Rocky — ексклюзивна колаборація, сучасний дизайн, інноваційні матеріали, ідеально для активного стилю.'
+                )">Переглянути</button>
+            </div>
+        </div>
+        <div id="men-clothes" class="product-window hidden">
+            <h3>Чоловічий ОДЯГ</h3>
+            <div class="product">
+                <div id="mm6-margiela-tshirt-slideshow" class="product-slideshow zara-animate"></div>
+                <p>MM6 Maison Margiela UNISEX - Print T-shirt - black</p>
+                <button class="cart-btn" onclick="showProductDetails(
+                    'MM6 Maison Margiela UNISEX - Print T-shirt - black',
+                    6900,
+                    'clothes',
+                    [
+                        'https://img01.ztat.net/article/spp-media-p1/a01ac2cd1d91410fbc4a0105f941e2c7/fe065296163e4cbdb3b47cc411b00af8.jpg?imwidth=762&filter=packshot',
+                        'https://img01.ztat.net/article/spp-media-p1/70168ede53524bb4b1dc3764fe4676e0/deb60c4eff244e53a5211085950fa2be.jpg?imwidth=1800'
+                    ],
+                    'Універсальна чорна футболка MM6 Maison Margiela з принтом. Стильний унісекс дизайн, преміальна бавовна, ідеально підходить для сучасних образів.'
+                )">Переглянути</button>
+            </div>
+            <div class="product">
+                <div id="rick-owens-geth-belas-slideshow" class="product-slideshow zara-animate"></div>
+                <p>Rick Owens Geth Belas</p>
+                <button class="cart-btn" onclick="showProductDetails(
+                    'Rick Owens Geth Belas',
+                    18500,
+                    'clothes',
+                    [
+                        'https://img2.ans-media.com/i/1084x1626/SS25-SPM0OF-99X_F1_PRM.webp?v=1737722464',
+                        'https://img2.ans-media.com/i/1084x1626/SS25-SPM0OF-99X_F3_PRM.webp?v=1737723773',
+                        'https://img2.ans-media.com/i/1084x1626/SS25-SPM0OF-99X_F4_PRM.webp?v=1737723543'
+                    ],
+                    'Rick Owens Geth Belas — культові брюки з унікальним кроєм, преміальна італійська тканина, сучасний авангардний стиль.'
+                )">Переглянути</button>
+            </div>
+            <div class="product">
+                <div id="enfants-riches-deprimes-slideshow" class="product-slideshow zara-animate"></div>
+                <p>Enfants Riches Deprimes</p>
+                <button class="cart-btn" onclick="showProductDetails(
+                    'Enfants Riches Deprimes',
+                    22500,
+                    'clothes',
+                    [
+                        'https://justinreed.com/cdn/shop/files/1_09ed2206-1cc2-44c6-8b23-a1f47481d8d2.jpg?v=1746057758&width=1100',
+                        'https://justinreed.com/cdn/shop/files/DSC03057.jpg?v=1746145100&width=1100',
+                        'https://justinreed.com/cdn/shop/files/2_26d8b41b-38f6-41b9-9eb0-dd09b10bbb56.jpg?v=1746057758&width=1100'
+                    ],
+                    'Enfants Riches Deprimes — ексклюзивна дизайнерська річ, ручна робота, унікальний арт-принт, преміальні матеріали.'
+                )">Переглянути</button>
+            </div>
+            <div class="product">
+                <div id="3b-sports-icon-outerwear-slideshow" class="product-slideshow zara-animate"></div>
+                <p>3b Sports Icon Outerwear</p>
+                <button class="cart-btn" onclick="showProductDetails(
+                    '3b Sports Icon Outerwear',
+                    39500,
+                    'clothes',
+                    [
+                        'https://balenciaga.dam.kering.com/m/68656e71f8fdbe77/Large-773668TPVQ21000_D.jpg?v=3',
+                        'https://balenciaga.dam.kering.com/m/21ee61933f9b1fff/Large-773668TPVQ21000_F.jpg?v=3',
+                        'https://balenciaga.dam.kering.com/m/6e17a350af7bc1d2/Large-773668TPV21000_J.jpg?v=1',
+                        'https://balenciaga.dam.kering.com/m/3d349e98be66e20a/Large-773668TPV21000_H.jpg?v=1'
+                    ],
+                    '3b Sports Icon Outerwear — преміальна куртка Balenciaga, сучасний спортивний стиль, ексклюзивна якість та дизайн.'
+                )">Переглянути</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="products1" class="container hidden">
+    <h2>Товар</h2>
+    <div id="product-details">
+        <p>Оберіть товар, щоб переглянути його характеристики.</p>
+    </div>
+</div>
+<div id="cart" class="container hidden">
+    <h2>Ваш кошик</h2>
+    <div id="cart-content"><p>Ваш кошик порожній.</p></div>
+    <button class="cart-clear-btn" onclick="clearCart()">Очистити кошик</button>
+    <button class="pay-btn" onclick="payForOrder()">Оплатити замовлення</button>
+</div>
+<footer>
+    <p>Зв'яжіться з нами: +380 97 123 45 67</p>
+</footer>
+<!-- Форма для самовывоза -->
+<div id="pickupForm" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closePickupForm()">&times;</span>
+        <h3>Введіть ваші дані для самовивозу</h3>
+        <input type="text" id="pickupName" placeholder="Ім'я та прізвище">
+        <input type="text" id="pickupPhone" placeholder="Номер телефону">
+        <button onclick="submitPickupForm()">Підтвердити</button>
+    </div>
+</div>
+
+<!-- Форма для оплати онлайн -->
+<div id="onlinePaymentForm" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeOnlinePaymentForm()">&times;</span>
+        <h3>Введіть ваші дані для доставки</h3>
+        <input type="text" id="onlineName" placeholder="Ім'я та прізвище">
+        <input type="text" id="onlinePhone" placeholder="Номер телефону">
+        <input type="text" id="onlineCity" placeholder="Місто">
+        <input type="text" id="onlinePost" placeholder="Відділення Нової Пошти">
+        <button onclick="submitOnlinePaymentForm()">Підтвердити</button>
+    </div>
+</div>
+<!-- Окно выбора способа оплаты -->
+<div id="paymentChoiceForm" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closePaymentChoiceForm()">&times;</span>
+        <h3>Виберіть спосіб оплати</h3>
+        <button onclick="selectPaymentMethod('cash')">Готівка</button>
+        <button onclick="selectPaymentMethod('card')">Картка</button>
+    </div>
+</div>
+<!-- Окно оплаты картой -->
+<div id="cardPaymentForm" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeCardPaymentForm()">&times;</span>
+        <h3>Оплата карткою</h3>
+        <p>Введіть дані вашої картки:</p>
+        <input type="text" id="cardNumber" placeholder="Номер картки (наприклад, 4242 4242 4242 4242)">
+        <input type="text" id="cardExpiry" placeholder="Термін дії (MM/YY)">
+        <input type="text" id="cardCVC" placeholder="CVC (наприклад, 123)">
+        <button onclick="processCardPayment()">Оплатити</button>
+    </div>
+</div>
+<!-- Модальное окно для выбора способа оплаты -->
+<div id="paymentModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closePaymentModal()">&times;</span>
+        <h3>Оберіть спосіб оплати</h3>
+        <button class="pay-btn" onclick="selectPaymentMethod('pickup')">Самовивіз</button>
+        <button class="pay-btn" onclick="selectPaymentMethod('online')">Оплата онлайн</button>
+    </div>
+</div>
+<div class="brand-slider">
+    <div class="brand-slider-track">
+        <img src="E:\стартап\1111\photo_2025-04-08_09-56-08.jpg" alt="Brand 1">
+        <img src="E:\стартап\1111\photo_2025-04-08_09-56-37.jpg" alt="Brand 2">
+        <img src="E:\стартап\1111\photo_2025-04-08_09-56-49.jpg" alt="Brand 3">
+        <img src="E:\стартап\1111\photo_2025-04-08_09-56-55.jpg" alt="Brand 4">
+        <img src="E:\стартап\1111\photo_2025-04-08_09-57-04.jpg" alt="Brand 5">
+        <img src="E:\стартап\1111\photo_2025-04-08_09-57-15.jpg" alt="Brand 6">
+        <img src="E:\стартап\1111\photo_2025-04-08_09-57-23.jpg" alt="Brand 7">
+        <img src="E:\стартап\1111\photo_2025-04-08_09-57-31.jpg" alt="Brand 8">
+        <img src="E:\стартап\1111\photo_2025-04-08_09-56-08.jpg" alt="Brand 1"> <!-- Повтор для бесконечного эффекта -->
+        <img src="E:\стартап\1111\photo_2025-04-08_09-56-37.jpg" alt="Brand 2">
+        <img src="E:\стартап\1111\photo_2025-04-08_09-56-49.jpg" alt="Brand 3">
+        <img src="E:\стартап\1111\photo_2025-04-08_09-56-55.jpg" alt="Brand 4">
+        <img src="E:\стартап\1111\photo_2025-04-08_09-57-04.jpg" alt="Brand 5">
+        <img src="E:\стартап\1111\photo_2025-04-08_09-57-15.jpg" alt="Brand 6">
+        <img src="E:\стартап\1111\photo_2025-04-08_09-57-23.jpg" alt="Brand 7">
+        <img src="E:\стартап\1111\photo_2025-04-08_09-57-31.jpg" alt="Brand 8">
+    </div>
+</div>
+<div id="popup" class="popup"></div>
+<div id="helpWidget">
+    <div id="closeHelp">&times;</div>
+    <h4>Техпідтримка</h4>
+    <p>Введіть ваші контактні дані (email, телефон або Telegram) та очікуйте на відповідь.</p>
+    <input type="text" id="contactInput" placeholder="Введіть email / телефон / Telegram">
+    <button>Відправити</button>
+</div>
+<button id="helpButton">?</button>
+</body>
+</html>
